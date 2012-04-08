@@ -3,41 +3,37 @@
 #include <time.h>
 #include "utilitaires.h"
 #include "terrain.h"
+#include "vue.h"
+
 using namespace std;
 
 int main()
 {
     srand((int)time(NULL));
-    initAlleg();
 
-    int taille = 200;
-    int octaves = 3;
-	int frequence = 5;
-	float persistence =.5;
-    int lissage = 5;
+	Terrain* test_terrain = new Terrain(200);
+	Personnage* test_perso = new Personnage(test_terrain, DEFAULT);
 
-    /**Un calque est tout simplement une image (matice carre) en niveau de gris (valeurs entre 0 et 255)
-    Pour des explications sur la generation de terrains avec l'algo de perlin,
-    consulter par exemple le site :http://khayyam.developpez.com/articles/algo/perlin/
-    **/
+	Vue::initAllegro();
+	Vue* test_vue = new Vue(test_terrain, test_perso);
 
-	Calque* brut = NULL;
-	Calque* lisse = NULL;
+	while(!key[KEY_ESC] && test_perso->isAlive())
+	{
+		test_vue->afficherTout();
 
-	brut = new Calque(taille);
-	brut->generer(frequence, octaves, persistence);
-	brut->sauvegarder((char*)"brut.txt");
+		rest(10);
 
-	lisse = brut->lisser(lissage);
-	lisse->sauvegarder((char*)"lisse.txt");
+		if(key[KEY_LEFT]) test_perso->Move(-1, 0);
+		if(key[KEY_RIGHT]) test_perso->Move(1, 0);
+		if(key[KEY_UP]) test_perso->Move(0, -1);
+		if(key[KEY_DOWN]) test_perso->Move(0, 1);
+		if(key[KEY_B]) test_perso->Boire();
+		if(key[KEY_M]) test_perso->Manger();
+		if(key[KEY_G]) test_perso->Gourde();
+		if(key[KEY_S]) test_perso->Sac();
+	}
 
-	afficherCalques(brut, lisse);
-
-	delete brut;
-	delete lisse;
-
-	Terrain* test = new Terrain(50);
-	test->AfficherTerrain();
+	allegro_message("End of game !");
 
 	return 0;
 }END_OF_MAIN();

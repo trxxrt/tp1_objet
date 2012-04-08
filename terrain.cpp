@@ -1,5 +1,15 @@
 #include "terrain.h"
 
+using namespace std;
+
+int Terrain::nivmer = 100;
+int Terrain::nivplaine = 120;
+int Terrain::nivplainebaie = 140;
+int Terrain::nivforet = 160;
+int Terrain::nivriviere = 180;
+int Terrain::nivmontagne = 200;
+
+
 Terrain::Terrain(int x)
 {
 	int temp=0;
@@ -8,9 +18,6 @@ Terrain::Terrain(int x)
 	int frequence=5;
 	float persistence=.5;
     int lissage = 5;
-
-    int nivmer=80;
-    int nivplain=160;
 
 	this->x = x;
 	this->y = x;
@@ -22,16 +29,21 @@ Terrain::Terrain(int x)
 
 	clc = clc->lisser(lissage);
 
-	cases = (Case***)malloc(x*sizeof(Case**));
+	cases = new Case**[x];
 
 	for(int i=0; i<x; i++)
 	{
-		cases[i] = (Case**)malloc(x*sizeof(Case*));
+		cases[i] = new Case*[x];
+
 		for(int j=0; j<x; j++)
 		{
-			temp = MONTAGNE;
-			if(clc->v[i][j] < nivplain) temp = PLAINE;
-			if(clc->v[i][j] < nivmer) temp = MER;
+			temp = HAUTE_MONTAGNE;
+			if(clc->v[i][j] < Terrain::nivmontagne) temp = MONTAGNE;
+			if(clc->v[i][j] < Terrain::nivriviere) temp = RIVIERE;
+			if(clc->v[i][j] < Terrain::nivforet) temp = FORET;
+			if(clc->v[i][j] < Terrain::nivplainebaie) temp = PLAINE_BAIE;
+			if(clc->v[i][j] < Terrain::nivplaine) temp = PLAINE;
+			if(clc->v[i][j] < Terrain::nivmer) temp = MER;
 			this->cases[i][j] = new Case(i, j, temp);
 		}
 	}
@@ -50,7 +62,7 @@ void Terrain::AfficherTerrain()
 	{
 		for(int j=0; j<y; j++)
 		{
-			if(cases[i][j] != NULL) printf("%d", cases[i][j]->Gettype());
+			if(cases[i][j] != NULL) printf("%d", cases[i][j]->GetType());
 		}
 		printf("\n");
 	}

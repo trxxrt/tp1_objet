@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include "utilitaires.h"
+
+using namespace std;
+
 //tirage aleatoire
 unsigned char aleatoire(float a){
     return (float)rand() / RAND_MAX * a;

@@ -1,6 +1,9 @@
 #include "Calque.h"
 #include "utilitaires.h"
 #include<stdio.h>
+
+using namespace std;
+
 /*
 Un calque est tout simplement une image (matice carre) en niveau de gris (valeurs entre 0 et 255)
 Pour la generation de terrains avec l'algo de perlin,

@@ -7,7 +7,11 @@
 #include "Calque.h"
 #include "case.h"
 
-#define MONTAGNE 2
+#define HAUTE_MONTAGNE 6
+#define MONTAGNE 5
+#define RIVIERE 4
+#define FORET 3
+#define PLAINE_BAIE 2
 #define PLAINE 1
 #define MER 0
 
@@ -16,6 +20,12 @@ class Terrain
 	private:
 		int x;
 		int y;
+		static int nivmer;
+		static int nivplaine;
+		static int nivplainebaie;
+		static int nivforet;
+		static int nivriviere;
+		static int nivmontagne;
 		Case*** cases;
 
 	public:
