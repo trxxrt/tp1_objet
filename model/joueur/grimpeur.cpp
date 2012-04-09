@@ -3,6 +3,7 @@
 Grimpeur::Grimpeur(Terrain* t) : Personnage(t)
 {
 	this->type = GRIMPEUR;
+	this->pic = load_bitmap("res/grimpeur.bmp", NULL);
 	this->portee = 8;
 }
 

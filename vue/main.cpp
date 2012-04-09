@@ -95,20 +95,26 @@ void Vue::afficherTerrain(){
     blit(bmpTerrain,bufferTerrain,bx,by,0,0,bufferTerrain->w,bufferTerrain->h);
 }
 
-void Vue::afficherTout(){
+void Vue::afficherPersonnage()
+{
+	// coordonnée x du joueur
+	int x_pos = (SCREEN_W-300)/2;
+	if(p->Getx()*Case::taille_pix-bufferTerrain->w/2 < 0) x_pos = p->Getx()*Case::taille_pix;
+	if(p->Getx()*Case::taille_pix-bufferTerrain->w/2 >= bmpTerrain->w-bufferTerrain->w) x_pos = SCREEN_W-300 - (t->Getx() - p->Getx())*Case::taille_pix;
 
-	// terrain
-	updateTerrain();
-    afficherTerrain();
+	// coordonnée y du joueur
+	int y_pos = SCREEN_H/2;
+	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 < 0) y_pos = p->Gety()*Case::taille_pix;
+	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 >= bmpTerrain->h-bufferTerrain->h) y_pos = SCREEN_H - (t->Gety() - p->Gety())*Case::taille_pix;
 
+	// affichage du joueur
+	for(int i=0; i<10; i++)
+		for(int j=0; j<10; j++)
+			putpixel(bufferJeu,i+x_pos,j+y_pos,makecol(255,255,255));
+}
 
-    clear_bitmap(bufferJeu);
-    blit(bufferTerrain,bufferJeu,0,0,0,0,SCREEN_W,SCREEN_H);
-
-    BITMAP*bmp=create_bitmap(bmpTerrain->w,bmpTerrain->h);
-    blit(bmpTerrain,bmp,0,0,0,0,bmpTerrain->w,bmpTerrain->h);
-    stretch_blit(bmp,bufferJeu,0,0,bmpTerrain->w,bmpTerrain->h,550,30,200,200);
-
+void Vue::afficherGui()
+{
 	// barre d'énergie
 	for(int i=0; i<200; i++)
 	{
@@ -129,21 +135,6 @@ void Vue::afficherTout(){
 		}
 	}
 
-	// coordonnée x du joueur
-	int x_pos = (SCREEN_W-300)/2;
-	if(p->Getx()*Case::taille_pix-bufferTerrain->w/2 < 0) x_pos = p->Getx()*Case::taille_pix;
-	if(p->Getx()*Case::taille_pix-bufferTerrain->w/2 >= bmpTerrain->w-bufferTerrain->w) x_pos = SCREEN_W-300 - (t->Getx() - p->Getx())*Case::taille_pix;
-
-	// coordonnée y du joueur
-	int y_pos = SCREEN_H/2;
-	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 < 0) y_pos = p->Gety()*Case::taille_pix;
-	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 >= bmpTerrain->h-bufferTerrain->h) y_pos = SCREEN_H - (t->Gety() - p->Gety())*Case::taille_pix;
-
-	// affichage du joueur
-	for(int i=0; i<10; i++)
-		for(int j=0; j<10; j++)
-			putpixel(bufferJeu,i+x_pos,j+y_pos,makecol(255,255,255));
-
 	// affichage gui gourde et sac
 	if(p->Gettype() != NAGEUR && p->Gettype() != GRIMPEUR)
 	{
@@ -163,9 +154,26 @@ void Vue::afficherTout(){
 	textout_ex(bufferJeu, font, "m : manger", 550, 520, makecol(255,255,255), -1);
 	if(p->Gettype() != NAGEUR) textout_ex(bufferJeu, font, "g : gourde", 550, 540, makecol(255,255,255), -1);
 	if(p->Gettype() != NAGEUR) textout_ex(bufferJeu, font, "s : sac", 550, 560, makecol(255,255,255), -1);
+}
+
+void Vue::afficherTout(){
+
+	updateTerrain();
+    afficherTerrain();
+
+    clear_bitmap(bufferJeu);
+    blit(bufferTerrain,bufferJeu,0,0,0,0,SCREEN_W,SCREEN_H);
+
+    BITMAP*bmp=create_bitmap(bmpTerrain->w,bmpTerrain->h);
+    blit(bmpTerrain,bmp,0,0,0,0,bmpTerrain->w,bmpTerrain->h);
+    stretch_blit(bmp,bufferJeu,0,0,bmpTerrain->w,bmpTerrain->h,550,30,200,200);
+
+    afficherGui();
+    afficherPersonnage();
 
     blit(bufferJeu,screen,0,0,0,0,SCREEN_W,SCREEN_H);
     destroy_bitmap(bmp);
+
 }
 
 Vue::~Vue()

@@ -8,6 +8,8 @@
 #include "../model/joueur/personnage.h"
 #include "../misc/utilitaires.h"
 
+#define PUTPIXEL_DISPLAY 1
+
 class Vue
 {
 	public:
@@ -56,6 +58,8 @@ class Vue
 
 		/// protected methods
 	protected:
+		void afficherPersonnage();
+		void afficherGui();
 		void afficherTerrain();
 		void dessinerTerrain();
 		int getColorFromType(int val);

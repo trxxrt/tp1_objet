@@ -16,6 +16,7 @@ class Personnage
 {
 	protected:
 		Terrain* t;
+		BITMAP* pic;
 		int x;
 		int y;
 		int portee;

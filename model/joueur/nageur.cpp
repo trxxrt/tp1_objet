@@ -3,6 +3,7 @@
 Nageur::Nageur(Terrain* t) : Personnage(t)
 {
 	this->type = NAGEUR;
+	this->pic = load_bitmap("res/nageur.bmp", NULL);
 	this->portee = 8;
 }
 
