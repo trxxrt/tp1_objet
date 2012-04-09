@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <allegro.h>
-#include "terrain.h"
-#include "personnage.h"
-#include "utilitaires.h"
+#include "../model/environnement/terrain.h"
+#include "../model/joueur/personnage.h"
+#include "../misc/utilitaires.h"
 
 class Vue
 {

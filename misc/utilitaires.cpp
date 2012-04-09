@@ -32,14 +32,6 @@ int interpolate(int y1, int y2, int n, int delta){
     float fac2 = 3*pow(a, 2) - 2*pow(a, 3);
 
     return y1*fac1 + y2*fac2;
-
-	//////////////////////////////////////////////
-
-    // interpolation linéaire
-    /*if (n!=0)
-        return y1+delta*((float)y2-(float)y1)/(float)n;
-    else
-        return y1;*/
 }
 void initAlleg(){
    // init allegro

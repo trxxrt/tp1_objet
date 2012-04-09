@@ -1,16 +1,9 @@
-#include "Calque.h"
-#include "utilitaires.h"
-#include<stdio.h>
+#include "calque.h"
+#include "../../misc/utilitaires.h"
+#include <stdio.h>
 
 using namespace std;
 
-/*
-Un calque est tout simplement une image (matice carre) en niveau de gris (valeurs entre 0 et 255)
-Pour la generation de terrains avec l'algo de perlin,
-consulter par exemple le site :http://khayyam.developpez.com/articles/algo/perlin/
-Code C++ adapté par J.Palasi à partir du code C présenté dans l'article
-*/
-//constructeur public
 Calque::Calque(int t){
 
     v = new int*[t];
@@ -23,7 +16,7 @@ Calque::Calque(int t){
     taille = t;
     persistance = 1;
 }
-//constructeurs privés
+
 Calque::Calque(int t, float p)
 {
 
@@ -37,6 +30,7 @@ Calque::Calque(int t, float p)
     taille = t;
     persistance = p;
 }
+
 Calque::Calque(int t, float p,int alea)
 {
 
@@ -51,7 +45,6 @@ Calque::Calque(int t, float p,int alea)
     persistance = p;
 }
 
-//destructeur
 Calque::~Calque()
 {
     int j;
@@ -59,6 +52,7 @@ Calque::~Calque()
         delete v[j];
     delete v;
 }
+
 void Calque::generer(int frequence,int octaves,float persistance){
 
     int i,j,n,f_courante;
@@ -67,9 +61,9 @@ void Calque::generer(int frequence,int octaves,float persistance){
 
     pas = (float)(taille)/frequence;
     float persistance_courante = persistance;
-    //calque alea
+
     Calque* random=new Calque(taille,1,256);
-    // calques de travail
+
     Calque **mes_calques;
     mes_calques=new Calque*[octaves];
     for (i=0; i<octaves; i++){
@@ -79,7 +73,6 @@ void Calque::generer(int frequence,int octaves,float persistance){
 
     f_courante = frequence;
 
-    // remplissage des calques
     for (n=0; n<octaves; n++){
         for(i=0; i<taille; i++)
             for(j=0; j<taille; j++) {
@@ -108,6 +101,7 @@ void Calque::generer(int frequence,int octaves,float persistance){
     delete mes_calques;
     delete random;
 }
+
 Calque* Calque::lisser(int liss){
 
     int x,y,k,l;
@@ -130,6 +124,7 @@ Calque* Calque::lisser(int liss){
 
     return lissage;
 }
+
 void Calque::sauvegarder(char* ficname){
     FILE*fp=fopen(ficname,"w");
     if(fp){
@@ -145,7 +140,7 @@ void Calque::sauvegarder(char* ficname){
 }
 
 int Calque::valeur_interpolee(int i, int j, int frequence){
-    // valeurs des bornes
+
     int borne1x, borne1y, borne2x, borne2y, q;
     float pas;
     pas = (float)taille/frequence;

@@ -1,5 +1,5 @@
-#include "vue.h"
-#include "utilitaires.h"
+#include "main.h"
+#include "../misc/utilitaires.h"
 
 using namespace std;
 
@@ -134,16 +134,25 @@ void Vue::afficherTout(){
 		for(int j=0; j<10; j++)
 			putpixel(bufferJeu,i+x_pos,j+y_pos,makecol(255,255,255));
 
-	if(p->Getgourde() == PLEINE) textout_ex(bufferJeu, font, "gourde pleine", 600, 450, makecol(255,255,255), -1);
-	else textout_ex(bufferJeu, font, "gourde vide", 600, 450, makecol(255,255,255), -1);
+	if(p->Gettype() != NAGEUR)
+	{
+		if(p->Getgourde() == PLEINE) textout_ex(bufferJeu, font, "gourde pleine", 600, 450, makecol(255,255,255), -1);
+		else textout_ex(bufferJeu, font, "gourde vide", 600, 450, makecol(255,255,255), -1);
 
-	if(p->Getsac() == PLEINE) textout_ex(bufferJeu, font, "sac plein", 600, 470, makecol(255,255,255), -1);
-	else textout_ex(bufferJeu, font, "sac vide", 600, 470, makecol(255,255,255), -1);
+		if(p->Getsac() == PLEINE) textout_ex(bufferJeu, font, "sac plein", 600, 470, makecol(255,255,255), -1);
+		else textout_ex(bufferJeu, font, "sac vide", 600, 470, makecol(255,255,255), -1);
+	}
+	else
+	{
+		textout_ex(bufferJeu, font, "pas de gourde", 600, 450, makecol(255,255,255), -1);
+		textout_ex(bufferJeu, font, "pas de sac", 600, 470, makecol(255,255,255), -1);
+	}
+
 
 	textout_ex(bufferJeu, font, "b : boire", 550, 500, makecol(255,255,255), -1);
 	textout_ex(bufferJeu, font, "m : manger", 550, 520, makecol(255,255,255), -1);
-	textout_ex(bufferJeu, font, "g : gourde", 550, 540, makecol(255,255,255), -1);
-	textout_ex(bufferJeu, font, "s : sac", 550, 560, makecol(255,255,255), -1);
+	if(p->Gettype() != NAGEUR) textout_ex(bufferJeu, font, "g : gourde", 550, 540, makecol(255,255,255), -1);
+	if(p->Gettype() != NAGEUR) textout_ex(bufferJeu, font, "s : sac", 550, 560, makecol(255,255,255), -1);
 
     blit(bufferJeu,screen,0,0,0,0,SCREEN_W,SCREEN_H);
     destroy_bitmap(bmp);

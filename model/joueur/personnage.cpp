@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Personnage::Personnage(Terrain* t, int type)
+Personnage::Personnage(Terrain* t)
 {
 	this->t = t;
 	this->x = t->Getx()/2;
@@ -11,7 +11,6 @@ Personnage::Personnage(Terrain* t, int type)
 	this->hydratation = PLEINE;
 	this->gourde = VIDE;
 	this->sac = VIDE;
-	this->type = type;
 }
 
 Personnage::~Personnage()
@@ -67,53 +66,9 @@ bool Personnage::isAlive()
 
 void Personnage::updateCases()
 {
-	for(int i=-4; i<4; i++)
-		for(int j=-4; j<4; j++)
+	for(int i=-portee; i<portee; i++)
+		for(int j=-portee; j<portee; j++)
 			if(x+i>0 && x+i<t->Getx() && y+j>0 && y+j<t->Gety()) t->Getcase(x+i, y+j)->Setdecouverte(1);
-}
-
-
-void Personnage::Move(int valx, int valy)
-{
-	int effort = 0;
-
-	switch(t->Getcase(x, y)->GetType())
-	{
-		case MER:
-			effort = 3;
-			break;
-
-		case PLAINE:
-		case PLAINE_BAIE:
-			effort = 1;
-			break;
-
-		case FORET:
-			effort = 2;
-			break;
-
-		case RIVIERE:
-			effort = 1;
-			break;
-
-		case MONTAGNE:
-			effort = 3;
-			break;
-
-		case HAUTE_MONTAGNE:
-			effort = 5;
-			break;
-
-		default:
-			effort = 5;
-			break;
-	}
-
-	this->Setenergie(energie - effort);
-	this->Sethydratation(hydratation - effort);
-
-	this->Setx(x + valx);
-	this->Sety(y + valy);
 }
 
 void Personnage::Boire()

@@ -8,15 +8,15 @@
 }
 
 #include <allegro.h>
-#include "Calque.h"
+#include "../model/environnement/calque.h"
+
 unsigned char aleatoire(float );
 int min(int,int);
 int max(int,int);
-//interpolation
 int interpolate(int , int,  int , int );
-//allegro
 void initAlleg();
 BITMAP* get_bmp(Calque *);
 BITMAP* get_bmp_gris(Calque*);
 void afficherCalques(Calque*,Calque*);
+
 #endif // UTILITAIRES_H_INCLUDED

@@ -1,14 +1,16 @@
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
 
-#include "terrain.h"
+#include "../environnement/terrain.h"
 
 #define VIDE 0
 #define PLEINE 1000
 
+#define DEFAULT 0
 #define NAGEUR 1
 #define MARCHEUR 2
-#define DEFAULT 0
+#define ECLAIREUR 3
+#define GRIMPEUR 4
 
 class Personnage
 {
@@ -16,6 +18,7 @@ class Personnage
 		Terrain* t;
 		int x;
 		int y;
+		int portee;
 		int energie;
 		int hydratation;
 		int gourde;
@@ -24,7 +27,7 @@ class Personnage
 
 	public:
 		/// constructor & destructor
-		Personnage(Terrain* t, int type);
+		Personnage(Terrain* t);
 		~Personnage();
 
 		/// getters
@@ -38,7 +41,7 @@ class Personnage
 		bool isAlive();
 
 		/// setters
-		void Move(int valx, int valy);
+		virtual void Move(int valx, int valy) = 0;
 		void Setx(int val);
 		void Sety(int val);
 		void Setenergie(int val);

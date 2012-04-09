@@ -3,8 +3,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "utilitaires.h"
-#include "Calque.h"
+#include "../../misc/utilitaires.h"
+#include "calque.h"
 #include "case.h"
 
 #define HAUTE_MONTAGNE 6
@@ -36,7 +36,7 @@ class Terrain
 		/// getters
 		int Getx() { return x; }
 		int Gety() { return y; }
-		Case* Getcase(int x, int y) { return cases[x][y]; }
+		Case* Getcase(int x, int y) { if(x<this->x && x>=0 && y>=0 && y<this->y) return cases[x][y]; else return NULL; }
 
 		/// setters
 		void Setx(int val) { x = val; }
