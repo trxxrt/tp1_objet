@@ -48,7 +48,7 @@ void Controller::initJeu()
 			break;
 
 		case ECLAIREUR:
-//			this->p = new Eclaireur(t);
+			this->p = new Eclaireur(t);
 			break;
 
 		default:

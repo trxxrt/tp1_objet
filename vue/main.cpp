@@ -52,16 +52,16 @@ void Vue::updateTerrain()
 	int color;
 	int a,b;
 
-	a = p->Getx()-4;
+	a = p->Getx()-(p->Getportee()/2);
 	if(a<0) a = 0;
-	if(a+8>t->Getx()) a = t->Getx()-8;
+	if((a + p->Getportee()) > t->Getx()) a = t->Getx() - p->Getportee();
 
-	b = p->Gety()-4;
+	b = p->Gety() - p->Getportee()/2;
 	if(b<0) b = 0;
-	if(b+8>t->Gety()) b = t->Gety()-8;
+	if(b + p->Getportee() > t->Gety()) b = t->Gety() - p->Getportee();
 
-	for(int i=a;i<a+8;i++){
-        for(int j=b;j<b+8;j++){
+	for(int i=a;i<a+p->Getportee();i++){
+        for(int j=b;j<b+p->Getportee();j++){
 			color = this->getColorFromType(t->Getcase(i,j)->GetType());
             for(int k=i*Case::taille_pix;k<(i+1)*Case::taille_pix;k++)
                 for(int l=j*Case::taille_pix;l<(j+1)*Case::taille_pix;l++)

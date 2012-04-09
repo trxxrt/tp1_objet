@@ -5,8 +5,8 @@ using namespace std;
 int Terrain::nivmer = 100;
 int Terrain::nivplaine = 120;
 int Terrain::nivplainebaie = 140;
-int Terrain::nivforet = 160;
-int Terrain::nivriviere = 180;
+int Terrain::nivriviere = 160;
+int Terrain::nivforet = 180;
 int Terrain::nivmontagne = 200;
 
 
@@ -39,8 +39,8 @@ Terrain::Terrain(int x)
 		{
 			temp = HAUTE_MONTAGNE;
 			if(clc->v[i][j] < Terrain::nivmontagne) temp = MONTAGNE;
-			if(clc->v[i][j] < Terrain::nivriviere) temp = RIVIERE;
 			if(clc->v[i][j] < Terrain::nivforet) temp = FORET;
+			if(clc->v[i][j] < Terrain::nivriviere) temp = RIVIERE;
 			if(clc->v[i][j] < Terrain::nivplainebaie) temp = PLAINE_BAIE;
 			if(clc->v[i][j] < Terrain::nivplaine) temp = PLAINE;
 			if(clc->v[i][j] < Terrain::nivmer) temp = MER;

@@ -56,7 +56,6 @@ class Vue
 
 		/// protected methods
 	protected:
-		int makecol_from_type(int type);
 		void afficherTerrain();
 		void dessinerTerrain();
 		int getColorFromType(int val);

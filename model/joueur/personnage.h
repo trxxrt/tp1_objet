@@ -38,6 +38,7 @@ class Personnage
 		int Getgourde() { return gourde; }
 		int Getsac() { return sac; }
 		int Gettype() { return type; }
+		int Getportee() { return portee; }
 		bool isAlive();
 
 		/// setters

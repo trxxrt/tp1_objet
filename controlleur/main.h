@@ -6,6 +6,7 @@
 #include "../model/joueur/nageur.h"
 #include "../model/joueur/marcheur.h"
 #include "../model/joueur/grimpeur.h"
+#include "../model/joueur/eclaireur.h"
 #include "../model/environnement/terrain.h"
 
 class Controller

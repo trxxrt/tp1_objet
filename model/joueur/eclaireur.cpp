@@ -1,12 +1,12 @@
-#include "grimpeur.h"
+#include "eclaireur.h"
 
-Grimpeur::Grimpeur(Terrain* t) : Personnage(t)
+Eclaireur::Eclaireur(Terrain* t) : Personnage(t)
 {
-	this->type = GRIMPEUR;
-	this->portee = 8;
+	this->type = ECLAIREUR;
+	this->portee = 16;
 }
 
-void Grimpeur::Move(int valx, int valy)
+void Eclaireur::Move(int valx, int valy)
 {
 	int effort = 0;
 	bool mouv_possible = true;
@@ -46,7 +46,10 @@ void Grimpeur::Move(int valx, int valy)
 
 	temp = t->Getcase(x+valx, y+valy);
 	if(temp == NULL) mouv_possible = false;
-	else if((temp->GetType() == MER && t->Getcase(x, y)->GetType() != MER) || (temp->GetType() == FORET && t->Getcase(x, y)->GetType() != FORET))
+	else if((temp->GetType() == MER && t->Getcase(x, y)->GetType() != MER)
+			|| (temp->GetType() == MONTAGNE && t->Getcase(x, y)->GetType() != MONTAGNE)
+			|| (temp->GetType() == HAUTE_MONTAGNE && t->Getcase(x, y)->GetType() != HAUTE_MONTAGNE)
+			|| (temp->GetType() == FORET && t->Getcase(x, y)->GetType() != FORET))
 		mouv_possible = false;
 
 	if(mouv_possible)
