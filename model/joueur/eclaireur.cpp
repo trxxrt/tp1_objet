@@ -48,8 +48,7 @@ void Eclaireur::Move(int valx, int valy)
 	if(temp == NULL) mouv_possible = false;
 	else if((temp->GetType() == MER && t->Getcase(x, y)->GetType() != MER)
 			|| (temp->GetType() == MONTAGNE && t->Getcase(x, y)->GetType() != MONTAGNE)
-			|| (temp->GetType() == HAUTE_MONTAGNE && t->Getcase(x, y)->GetType() != HAUTE_MONTAGNE)
-			|| (temp->GetType() == FORET && t->Getcase(x, y)->GetType() != FORET))
+			|| (temp->GetType() == HAUTE_MONTAGNE && t->Getcase(x, y)->GetType() != HAUTE_MONTAGNE))
 		mouv_possible = false;
 
 	if(mouv_possible)

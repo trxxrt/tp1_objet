@@ -15,11 +15,16 @@ Controller::~Controller()
 
 void Controller::choisirJoueur()
 {
+	BITMAP *background = load_bitmap("res/ChoiceBackground.bmp", NULL);
+
 	ready_to_start = true;
 	type_perso = DEFAULT;
 
+	draw_sprite(screen, background, 0, 0);
+
 	while(type_perso == DEFAULT && !key[KEY_ESC])
 	{
+		rest(20);
 		if(key[KEY_M]) type_perso = MARCHEUR;
 		if(key[KEY_N]) type_perso = NAGEUR;
 		if(key[KEY_G]) type_perso = GRIMPEUR;
@@ -75,8 +80,8 @@ void Controller::start()
 			if(key[KEY_DOWN]) p->Move(0, 1);
 			if(key[KEY_B]) p->Boire();
 			if(key[KEY_M]) p->Manger();
-			if(p->Gettype() != NAGEUR && key[KEY_G]) p->Gourde();
-			if(p->Gettype() != NAGEUR && key[KEY_S]) p->Sac();
+			if(p->Gettype() != NAGEUR && p->Gettype() != GRIMPEUR && key[KEY_G]) p->Gourde();
+			if(p->Gettype() != NAGEUR && p->Gettype() != ECLAIREUR && key[KEY_S]) p->Sac();
 		}
 
 		allegro_message("End of game !");

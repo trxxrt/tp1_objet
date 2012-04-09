@@ -96,14 +96,20 @@ void Vue::afficherTerrain(){
 }
 
 void Vue::afficherTout(){
+
+	// terrain
 	updateTerrain();
     afficherTerrain();
+
+
     clear_bitmap(bufferJeu);
     blit(bufferTerrain,bufferJeu,0,0,0,0,SCREEN_W,SCREEN_H);
+
     BITMAP*bmp=create_bitmap(bmpTerrain->w,bmpTerrain->h);
     blit(bmpTerrain,bmp,0,0,0,0,bmpTerrain->w,bmpTerrain->h);
     stretch_blit(bmp,bufferJeu,0,0,bmpTerrain->w,bmpTerrain->h,550,30,200,200);
 
+	// barre d'énergie
 	for(int i=0; i<200; i++)
 	{
 		for(int j=0; j<30; j++)
@@ -113,6 +119,7 @@ void Vue::afficherTout(){
 		}
 	}
 
+	// barre d'hydratation
 	for(int i=0; i<200; i++)
 	{
 		for(int j=0; j<30; j++)
@@ -122,32 +129,35 @@ void Vue::afficherTout(){
 		}
 	}
 
+	// coordonnée x du joueur
 	int x_pos = (SCREEN_W-300)/2;
 	if(p->Getx()*Case::taille_pix-bufferTerrain->w/2 < 0) x_pos = p->Getx()*Case::taille_pix;
 	if(p->Getx()*Case::taille_pix-bufferTerrain->w/2 >= bmpTerrain->w-bufferTerrain->w) x_pos = SCREEN_W-300 - (t->Getx() - p->Getx())*Case::taille_pix;
 
+	// coordonnée y du joueur
 	int y_pos = SCREEN_H/2;
 	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 < 0) y_pos = p->Gety()*Case::taille_pix;
 	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 >= bmpTerrain->h-bufferTerrain->h) y_pos = SCREEN_H - (t->Gety() - p->Gety())*Case::taille_pix;
 
+	// affichage du joueur
 	for(int i=0; i<10; i++)
 		for(int j=0; j<10; j++)
 			putpixel(bufferJeu,i+x_pos,j+y_pos,makecol(255,255,255));
 
-	if(p->Gettype() != NAGEUR)
+	// affichage gui gourde et sac
+	if(p->Gettype() != NAGEUR && p->Gettype() != GRIMPEUR)
 	{
 		if(p->Getgourde() == PLEINE) textout_ex(bufferJeu, font, "gourde pleine", 600, 450, makecol(255,255,255), -1);
 		else textout_ex(bufferJeu, font, "gourde vide", 600, 450, makecol(255,255,255), -1);
+	}
+	else textout_ex(bufferJeu, font, "pas de gourde", 600, 450, makecol(255,255,255), -1);
 
+	if(p->Gettype() != NAGEUR && p->Gettype() != ECLAIREUR)
+	{
 		if(p->Getsac() == PLEINE) textout_ex(bufferJeu, font, "sac plein", 600, 470, makecol(255,255,255), -1);
 		else textout_ex(bufferJeu, font, "sac vide", 600, 470, makecol(255,255,255), -1);
 	}
-	else
-	{
-		textout_ex(bufferJeu, font, "pas de gourde", 600, 450, makecol(255,255,255), -1);
-		textout_ex(bufferJeu, font, "pas de sac", 600, 470, makecol(255,255,255), -1);
-	}
-
+	else textout_ex(bufferJeu, font, "pas de sac", 600, 470, makecol(255,255,255), -1);
 
 	textout_ex(bufferJeu, font, "b : boire", 550, 500, makecol(255,255,255), -1);
 	textout_ex(bufferJeu, font, "m : manger", 550, 520, makecol(255,255,255), -1);
