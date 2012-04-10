@@ -1,6 +1,16 @@
 #ifndef CASE_H
 #define CASE_H
 
+#include <allegro.h>
+
+#define AUTRE 7
+#define HAUTE_MONTAGNE 6
+#define MONTAGNE 5
+#define RIVIERE 4
+#define FORET 3
+#define PLAINE_BAIE 2
+#define PLAINE 1
+#define MER 0
 
 class Case
 {
@@ -9,6 +19,15 @@ class Case
 		int j;
 		bool decouverte;
 		int type;
+		BITMAP* tile;
+		static BITMAP* tile_void;
+		static BITMAP* tile_mer;
+		static BITMAP* tile_plaine;
+		static BITMAP* tile_plaine_baie;
+		static BITMAP* tile_foret;
+		static BITMAP* tile_riviere;
+		static BITMAP* tile_montagne;
+		static BITMAP* tile_haute_montagne;
 	public:
 		static int taille_pix;
 
@@ -29,6 +48,8 @@ class Case
 		void Setj(int val) { j = val; }
 		void Settype(int val) { type = val; }
 		void Setdecouverte(int val) { decouverte = (bool)val; }
+		void Settile(int val);
+
 };
 
 #endif

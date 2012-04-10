@@ -86,5 +86,10 @@ void Controller::start()
 
 		allegro_message("End of game !");
 	}
-	else allegro_message("Erreur : controller::choisirjoueur() doit etre appelle avant de lancer le jeu");
+	else
+	{
+		type_perso = MARCHEUR;
+		initJeu();
+		start();
+	}
 }

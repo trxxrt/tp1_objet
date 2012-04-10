@@ -7,14 +7,6 @@
 #include "calque.h"
 #include "case.h"
 
-#define HAUTE_MONTAGNE 6
-#define MONTAGNE 5
-#define RIVIERE 4
-#define FORET 3
-#define PLAINE_BAIE 2
-#define PLAINE 1
-#define MER 0
-
 class Terrain
 {
 	private:
