@@ -2,14 +2,15 @@
 
 using namespace std;
 
-int Case::taille_pix=10;
-BITMAP* tile_mer = load_bitmap("res/tiles/mer.bmp", NULL);
-BITMAP* tile_plaine = load_bitmap("res/tiles/plaine.bmp", NULL);
-BITMAP* tile_plaine_baie = load_bitmap("res/tiles/plaine_baie.bmp", NULL);
-BITMAP* tile_foret = load_bitmap("res/tiles/foret.bmp", NULL);
-BITMAP* tile_riviere = load_bitmap("res/tiles/riviere.bmp", NULL);
-BITMAP* tile_montagne = load_bitmap("res/tiles/montagne.bmp", NULL);
-BITMAP* tile_haute_montagne = load_bitmap("res/tiles/haute_montagne.bmp", NULL);
+int Case::taille_pix = 10;
+BITMAP* Case::tile_mer = load_bitmap("res/tiles/mer.bmp", NULL);
+BITMAP* Case::tile_plaine = load_bitmap("res/tiles/plaine.bmp", NULL);
+BITMAP* Case::tile_plaine_baie = load_bitmap("res/tiles/plaine_baie.bmp", NULL);
+BITMAP* Case::tile_foret = load_bitmap("res/tiles/foret.bmp", NULL);
+BITMAP* Case::tile_riviere = load_bitmap("res/tiles/riviere.bmp", NULL);
+BITMAP* Case::tile_montagne = load_bitmap("res/tiles/montagne.bmp", NULL);
+BITMAP* Case::tile_haute_montagne = load_bitmap("res/tiles/haute_montagne.bmp", NULL);
+BITMAP* Case::tile_void = load_bitmap("res/tiles/void.bmp", NULL);
 
 Case::Case(int x, int y, int t)
 {

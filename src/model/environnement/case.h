@@ -20,6 +20,8 @@ class Case
 		bool decouverte;
 		int type;
 		BITMAP* tile;
+	public:
+		static int taille_pix;
 		static BITMAP* tile_void;
 		static BITMAP* tile_mer;
 		static BITMAP* tile_plaine;
@@ -28,8 +30,6 @@ class Case
 		static BITMAP* tile_riviere;
 		static BITMAP* tile_montagne;
 		static BITMAP* tile_haute_montagne;
-	public:
-		static int taille_pix;
 
 	public:
 		/// constructors & destructors
