@@ -39,6 +39,7 @@ class Case
 		/// getters
 		int Geti() { return i; }
 		int Getj() { return j; }
+		BITMAP* Gettile() { return tile; }
 		int GetType() { return type; }
 		bool estDecouverte() { return decouverte; }
 		static int Gettaille_pix() { return taille_pix; }

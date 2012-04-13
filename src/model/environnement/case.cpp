@@ -19,7 +19,7 @@ Case::Case(int x, int y, int t)
 	j = y;
 	type = t;
 	decouverte = 0;
-	Settile(type);
+	Settile(AUTRE);
 }
 
 void Case::Settile(int val)

@@ -47,7 +47,7 @@ void Grimpeur::Move(int valx, int valy)
 
 	temp = t->Getcase(x+valx, y+valy);
 	if(temp == NULL) mouv_possible = false;
-	else if((temp->GetType() == MER && t->Getcase(x, y)->GetType() != MER) || (temp->GetType() == FORET && t->Getcase(x, y)->GetType() != FORET))
+	else if((temp->GetType() == MER && t->Getcase(x, y)->GetType() != MER))
 		mouv_possible = false;
 
 	if(mouv_possible)

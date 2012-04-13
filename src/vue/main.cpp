@@ -30,25 +30,20 @@ Vue::Vue(Terrain *t, Personnage* p)
 }
 
 void Vue::dessinerTerrain(){
-    int color;
-    int k,l;
     int tc=Case::taille_pix;
     bmpTerrain=create_bitmap(t->Getx()*tc,t->Getx()*tc);
     for(int i=0;i<t->Getx();i++){
         for(int j=0;j<t->Getx();j++){
         	if(t->Getcase(i,j)->estDecouverte())
-				color = this->getColorFromType(t->Getcase(i,j)->GetType());
-        	else color = makecol(50,50,50);
-            for(k=i*tc;k<(i+1)*tc;k++)
-                for(l=j*tc;l<(j+1)*tc;l++)
-                    putpixel(bmpTerrain,k,l,color);
+				t->Getcase(i,j)->Settile(t->Getcase(i,j)->GetType());
+        	else t->Getcase(i,j)->Settile(AUTRE);
+			draw_sprite(bmpTerrain, t->Getcase(i,j)->Gettile(), i*Case::taille_pix, j*Case::taille_pix);
         }
     }
 }
 
 void Vue::updateTerrain()
 {
-	int color;
 	int a,b;
 
 	a = p->Getx()-(p->Getportee()/2);
@@ -61,10 +56,8 @@ void Vue::updateTerrain()
 
 	for(int i=a;i<a+p->Getportee();i++){
         for(int j=b;j<b+p->Getportee();j++){
-			color = this->getColorFromType(t->Getcase(i,j)->GetType());
-            for(int k=i*Case::taille_pix;k<(i+1)*Case::taille_pix;k++)
-                for(int l=j*Case::taille_pix;l<(j+1)*Case::taille_pix;l++)
-                    putpixel(bmpTerrain,k,l,color);
+			t->Getcase(i,j)->Settile(t->Getcase(i,j)->GetType());
+            draw_sprite(bmpTerrain, t->Getcase(i,j)->Gettile(), i*Case::taille_pix, j*Case::taille_pix);
         }
 	}
 }

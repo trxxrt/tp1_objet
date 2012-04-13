@@ -44,7 +44,7 @@ void Controller::choisirJoueur()
 
 void Controller::initJeu()
 {
-	this->t = new Terrain(200);
+	this->t = new Terrain(100);
 
 	switch (type_perso)
 	{
