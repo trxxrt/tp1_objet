@@ -15,7 +15,6 @@ void Vue::initAllegro(){
         ERREUR(allegro_error);
     }
     show_mouse(screen);
-
 }
 
 Vue::Vue(Terrain *t, Personnage* p)

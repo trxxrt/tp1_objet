@@ -57,9 +57,8 @@ void Calque::generer(int frequence,int octaves,float persistance){
 
     int i,j,n,f_courante;
     int a;
-    float pas, sum_persistances;
+    float sum_persistances;
 
-    pas = (float)(taille)/frequence;
     float persistance_courante = persistance;
 
     Calque* random=new Calque(taille,1,256);

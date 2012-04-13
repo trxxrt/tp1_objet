@@ -4,6 +4,14 @@ Controller::Controller()
 {
 	Vue::initAllegro();
 	this->ready_to_start = false;
+	Case::tile_mer = load_bitmap("res/tiles/mer.bmp", NULL);
+	Case::tile_plaine = load_bitmap("res/tiles/plaine.bmp", NULL);
+	Case::tile_plaine_baie = load_bitmap("res/tiles/plaine_baie.bmp", NULL);
+	Case::tile_foret = load_bitmap("res/tiles/foret.bmp", NULL);
+	Case::tile_riviere = load_bitmap("res/tiles/riviere.bmp", NULL);
+	Case::tile_montagne = load_bitmap("res/tiles/montagne.bmp", NULL);
+	Case::tile_haute_montagne = load_bitmap("res/tiles/haute_montagne.bmp", NULL);
+	Case::tile_void = load_bitmap("res/tiles/void.bmp", NULL);
 }
 
 Controller::~Controller()
