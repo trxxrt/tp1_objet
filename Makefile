@@ -4,7 +4,7 @@
 EXE=perlinGeneration
 
 # 2. flags de compilation allegro
-FLAGS=`allegro-config --libs` -Wall -Winit-self -O3
+FLAGS=`allegro-config --libs` -Wall -Winit-self -Wextra -pedantic -O3
 
 # 3. liste des fichiers à compiler
 SHARED=$(wildcard src/misc/*.cpp)
