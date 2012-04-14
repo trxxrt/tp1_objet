@@ -4,7 +4,7 @@ Marcheur::Marcheur(Terrain* t) : Personnage(t)
 {
 	this->type = MARCHEUR;
 	this->tile = load_bitmap("res/tiles/marcheur.bmp", NULL);
-	this->portee = 8;
+	this->portee = 4;
 }
 
 void Marcheur::Move(int valx, int valy)

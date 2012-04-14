@@ -4,7 +4,7 @@ Eclaireur::Eclaireur(Terrain* t) : Personnage(t)
 {
 	this->type = ECLAIREUR;
 	this->tile = load_bitmap("res/tiles/eclaireur.bmp", NULL);
-	this->portee = 16;
+	this->portee = 8;
 }
 
 void Eclaireur::Move(int valx, int valy)

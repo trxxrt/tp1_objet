@@ -4,7 +4,7 @@ Grimpeur::Grimpeur(Terrain* t) : Personnage(t)
 {
 	this->type = GRIMPEUR;
 	this->tile = load_bitmap("res/tiles/grimpeur.bmp", NULL);
-	this->portee = 8;
+	this->portee = 4;
 }
 
 void Grimpeur::Move(int valx, int valy)
