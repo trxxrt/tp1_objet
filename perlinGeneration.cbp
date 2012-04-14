@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="perlinGeneration" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/perlinGeneration" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="alleg" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/perlinGeneration" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Linker>
+			<Add option="`allegro-config --cflags` `allegro-config --libs`" />
+			<Add library="alleg" />
+		</Linker>
+		<Unit filename="src/controlleur/main.cpp" />
+		<Unit filename="src/controlleur/main.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/misc/utilitaires.cpp" />
+		<Unit filename="src/misc/utilitaires.h" />
+		<Unit filename="src/model/environnement/calque.cpp" />
+		<Unit filename="src/model/environnement/calque.h" />
+		<Unit filename="src/model/environnement/case.cpp" />
+		<Unit filename="src/model/environnement/case.h" />
+		<Unit filename="src/model/environnement/terrain.cpp" />
+		<Unit filename="src/model/environnement/terrain.h" />
+		<Unit filename="src/model/joueur/eclaireur.cpp" />
+		<Unit filename="src/model/joueur/eclaireur.h" />
+		<Unit filename="src/model/joueur/grimpeur.cpp" />
+		<Unit filename="src/model/joueur/grimpeur.h" />
+		<Unit filename="src/model/joueur/marcheur.cpp" />
+		<Unit filename="src/model/joueur/marcheur.h" />
+		<Unit filename="src/model/joueur/nageur.cpp" />
+		<Unit filename="src/model/joueur/nageur.h" />
+		<Unit filename="src/model/joueur/personnage.cpp" />
+		<Unit filename="src/model/joueur/personnage.h" />
+		<Unit filename="src/vue/main.cpp" />
+		<Unit filename="src/vue/main.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
