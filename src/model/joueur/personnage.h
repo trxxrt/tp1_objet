@@ -16,7 +16,7 @@ class Personnage
 {
 	protected:
 		Terrain* t;
-		BITMAP* pic;
+		BITMAP* tile;
 		int x;
 		int y;
 		int portee;
@@ -40,6 +40,7 @@ class Personnage
 		int Getsac() { return sac; }
 		int Gettype() { return type; }
 		int Getportee() { return portee; }
+		BITMAP* Gettile() { return tile; }
 		bool isAlive();
 
 		/// setters

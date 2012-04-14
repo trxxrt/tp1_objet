@@ -100,9 +100,7 @@ void Vue::afficherPersonnage()
 	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 >= bmpTerrain->h-bufferTerrain->h) y_pos = SCREEN_H - (t->Gety() - p->Gety())*Case::taille_pix;
 
 	// affichage du joueur
-	for(int i=0; i<10; i++)
-		for(int j=0; j<10; j++)
-			putpixel(bufferJeu,i+x_pos,j+y_pos,makecol(255,255,255));
+	draw_sprite(bufferJeu, p->Gettile(), x_pos, y_pos);
 }
 
 void Vue::afficherGui()

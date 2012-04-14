@@ -3,7 +3,7 @@
 Eclaireur::Eclaireur(Terrain* t) : Personnage(t)
 {
 	this->type = ECLAIREUR;
-	this->pic = load_bitmap("res/eclaireur.bmp", NULL);
+	this->tile = load_bitmap("res/tiles/eclaireur.bmp", NULL);
 	this->portee = 16;
 }
 

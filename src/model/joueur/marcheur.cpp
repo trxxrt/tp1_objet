@@ -3,7 +3,7 @@
 Marcheur::Marcheur(Terrain* t) : Personnage(t)
 {
 	this->type = MARCHEUR;
-	this->pic = load_bitmap("res/marcheur.bmp", NULL);
+	this->tile = load_bitmap("res/tiles/marcheur.bmp", NULL);
 	this->portee = 8;
 }
 
