@@ -7,6 +7,7 @@
 #include "../model/joueur/marcheur.h"
 #include "../model/joueur/grimpeur.h"
 #include "../model/joueur/eclaireur.h"
+#include "../model/joueur/monstre.h"
 #include "../model/environnement/terrain.h"
 
 class Controller
@@ -15,6 +16,7 @@ class Controller
 		Vue* v;
 		Terrain* t;
 		Personnage* p;
+		Monstre* monstres[MAX_MONSTRE];
 		int type_perso;
 		bool ready_to_start;
 

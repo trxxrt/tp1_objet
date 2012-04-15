@@ -6,8 +6,8 @@ int Terrain::nivmer = 100;
 int Terrain::nivplaine = 120;
 int Terrain::nivplainebaie = 140;
 int Terrain::nivriviere = 160;
-int Terrain::nivforet = 180;
-int Terrain::nivmontagne = 200;
+int Terrain::nivforet = 0;
+int Terrain::nivmontagne = 180;
 
 
 Terrain::Terrain(int x)

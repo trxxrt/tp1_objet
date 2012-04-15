@@ -6,6 +6,7 @@
 #include <allegro.h>
 #include "../model/environnement/terrain.h"
 #include "../model/joueur/personnage.h"
+#include "../model/joueur/monstre.h"
 #include "../misc/utilitaires.h"
 
 #define PUTPIXEL_DISPLAY 1
@@ -18,6 +19,7 @@ class Vue
 		BITMAP* bufferJeu;
 	protected:
 		Personnage* p;
+		Monstre* monstres[MAX_MONSTRE];
 		Terrain* t;
 		int px;
 		int py;
@@ -49,6 +51,7 @@ class Vue
 		void Setpy(int val) { py = val; }
 		void SettailleTpix_x(int val) { tailleTpix_x = val; }
 		void SettailleTpix_y(int val) { tailleTpix_y = val; }
+		void Setmonstre(int i, Monstre* val) { if(i<MAX_MONSTRE && i>=0) monstres[i] = val; }
 
 
 		/// public methods
@@ -62,7 +65,7 @@ class Vue
 		void afficherGui();
 		void afficherTerrain();
 		void dessinerTerrain();
-		int getColorFromType(int val);
+		void afficherMonstres(BITMAP* bmp);
 
 };
 

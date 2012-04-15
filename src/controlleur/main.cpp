@@ -68,13 +68,24 @@ void Controller::initJeu()
 			break;
 	}
 
+	for(int i=0; i<MAX_MONSTRE; i++)
+		this->monstres[i] = NULL;
+
 	this->v = new Vue(t, p);
 }
 
 void Controller::start()
 {
+	int clk = 1;
+
 	if(ready_to_start)
 	{
+		for(int i=0; i<MAX_MONSTRE; i++)
+		{
+			this->monstres[i] = new Monstre(t);
+			v->Setmonstre(i, monstres[i]);
+		}
+
 		while(!key[KEY_ESC] && p->isAlive())
 		{
 			v->afficherTout();
@@ -86,9 +97,30 @@ void Controller::start()
 			if(key[KEY_UP]) p->Move(0, -1);
 			if(key[KEY_DOWN]) p->Move(0, 1);
 			if(key[KEY_B]) p->Boire();
-			if(key[KEY_M]) p->Manger();
+			if(key[MY_KEY_M]) p->Manger();
 			if(p->Gettype() != NAGEUR && p->Gettype() != GRIMPEUR && key[KEY_G]) p->Gourde();
 			if(p->Gettype() != NAGEUR && p->Gettype() != ECLAIREUR && key[KEY_S]) p->Sac();
+
+			clk++;
+
+			for(int i=0; i<MAX_MONSTRE; i++)
+			{
+				if(!monstres[i]->isAlive())
+				{
+					this->monstres[i] = new Monstre(t);
+					v->Setmonstre(i, monstres[i]);
+				}
+			}
+
+			if(clk%4 == 0)
+			{
+				for(int i=0; i<MAX_MONSTRE; i++)
+				{
+					monstres[i]->chercherJoueur(p->Getx(), p->Gety());
+					if(monstres[i]->Getx() == p->Getx() && monstres[i]->Gety() == p->Gety())
+						p->Setenergie(0);
+				}
+			}
 		}
 
 		allegro_message("End of game !");

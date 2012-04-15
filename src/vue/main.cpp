@@ -5,20 +5,21 @@ using namespace std;
 
 void Vue::initAllegro(){
     allegro_init();
+
     install_keyboard();
-    install_mouse();
-    set_color_depth(32);
-    enable_hardware_cursor();
-
-    if (set_gfx_mode(GFX_AUTODETECT_WINDOWED, 800,600, 0, 0) != 0)
-    {
-        ERREUR(allegro_error);
-    }
-    show_mouse(screen);
-
-	const char *override_data = "[system]\n"
+   	const char *override_data = "[system]\n"
 	"keyboard=FR";
 	override_config_data(override_data, ustrsize(override_data));
+
+    install_mouse();
+    enable_hardware_cursor();
+
+    set_color_depth(32);
+
+    if (set_gfx_mode(GFX_AUTODETECT_WINDOWED, 800,600, 0, 0) != 0)
+        ERREUR(allegro_error);
+
+    show_mouse(screen);
 }
 
 Vue::Vue(Terrain *t, Personnage* p)
@@ -66,18 +67,6 @@ void Vue::updateTerrain()
 	}
 }
 
-int Vue::getColorFromType(int val)
-{
-	if(val==MER) return makecol(0,0,255);
-	if(val==PLAINE) return makecol(0,125,0);
-	if(val==PLAINE_BAIE) return makecol(255,0,0);
-	if(val==FORET) return makecol(0,255,0);
-	if(val==RIVIERE) return makecol(0,150,255);
-	if(val==MONTAGNE) return makecol(124,155,25);
-	if(val==HAUTE_MONTAGNE) return makecol(200,255,50);
-	return makecol(50,50,50);
-}
-
 void Vue::afficherTerrain(){
     clear_bitmap(bufferTerrain);
     int bx,by;
@@ -88,7 +77,14 @@ void Vue::afficherTerrain(){
     if(by<0)by=0;
     if(by>=bmpTerrain->h-bufferTerrain->h) by=bmpTerrain->h-bufferTerrain->h;
 
-    blit(bmpTerrain,bufferTerrain,bx,by,0,0,bufferTerrain->w,bufferTerrain->h);
+    BITMAP*bmp=create_bitmap(bmpTerrain->w,bmpTerrain->h);
+    draw_sprite(bmp, bmpTerrain, 0, 0);
+
+	afficherMonstres(bmp);
+
+    blit(bmp,bufferTerrain,bx,by,0,0,bufferTerrain->w,bufferTerrain->h);
+
+	destroy_bitmap(bmp);
 }
 
 void Vue::afficherPersonnage()
@@ -104,8 +100,25 @@ void Vue::afficherPersonnage()
 	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 >= bmpTerrain->h-bufferTerrain->h) y_pos = SCREEN_H - (t->Gety() - p->Gety())*Case::taille_pix;
 
 	// affichage du joueur
-	//draw_sprite(bufferJeu, p->Gettile(), x_pos, y_pos);
 	masked_blit(p->Gettile(), bufferJeu, p->Getclk()*Case::taille_pix, p->Getdirection()*Case::taille_pix, x_pos, y_pos, Case::taille_pix, Case::taille_pix);
+}
+
+void Vue::afficherMonstres(BITMAP* bmp)
+{
+	for(int i=0; i<MAX_MONSTRE; i++)
+	{
+		int x_pos = monstres[i]->Getx()*Case::taille_pix;
+		int y_pos = monstres[i]->Gety()*Case::taille_pix;
+
+		if(t->Getcase(monstres[i]->Getx(), monstres[i]->Gety())->estDecouverte())
+			masked_blit(monstres[i]->Gettile(),
+					bmp,
+					monstres[i]->Getclk()*Case::taille_pix,
+					monstres[i]->Getdirection()*Case::taille_pix,
+					x_pos, y_pos,
+					Case::taille_pix,
+					Case::taille_pix);
+	}
 }
 
 void Vue::afficherGui()

@@ -11,11 +11,14 @@
 #define MARCHEUR 2
 #define ECLAIREUR 3
 #define GRIMPEUR 4
+#define MONSTRE 5
 
 #define BAS 0
 #define GAUCHE 1
 #define DROITE 2
 #define HAUT 3
+
+#define MAX_MONSTRE 10
 
 class Personnage
 {
