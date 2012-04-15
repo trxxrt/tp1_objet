@@ -11,11 +11,70 @@ Personnage::Personnage(Terrain* t)
 	this->hydratation = PLEINE;
 	this->gourde = VIDE;
 	this->sac = VIDE;
+	this->clk = 0;
+	this->direction = BAS;
 }
 
 Personnage::~Personnage()
 {
 
+}
+
+void Personnage::Move(int valx, int valy)
+{
+	int effort = 0;
+
+	switch(t->Getcase(x, y)->GetType())
+	{
+		case MER:
+			effort = 5;
+			break;
+
+		case PLAINE:
+		case PLAINE_BAIE:
+			effort = 1;
+			break;
+
+		case FORET:
+			effort = 3;
+			break;
+
+		case RIVIERE:
+			effort = 1;
+			break;
+
+		case MONTAGNE:
+			effort = 8;
+			break;
+
+		case HAUTE_MONTAGNE:
+			effort = 16;
+			break;
+
+		default:
+			effort = 5;
+			break;
+	}
+
+	this->Setenergie(energie - effort);
+	this->Sethydratation(hydratation - effort);
+
+	Setclk(this->Getclk()+1);
+
+	if(valx < 0) direction = GAUCHE;
+	if(valy < 0) direction = HAUT;
+	if(valx > 0) direction = DROITE;
+	if(valy > 0) direction = BAS;
+
+	this->Setx(x + valx);
+	this->Sety(y + valy);
+}
+
+void Personnage::Setclk(int val)
+{
+	if(val< 0) clk = 3;
+	else if(val > 3) clk = 0;
+	else clk = val;
 }
 
 void Personnage::Setx(int val)

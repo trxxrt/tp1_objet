@@ -1,4 +1,10 @@
 #include "main.h"
+#if defined(linux) || defined(__linux)
+  #define MY_KEY_M KEY_M
+#else
+  #define MY_KEY_M KEY_SEMICOLON
+#endif
+
 
 Controller::Controller()
 {
@@ -25,8 +31,8 @@ void Controller::choisirJoueur()
 
 	while(type_perso == DEFAULT && !key[KEY_ESC])
 	{
-		rest(20);
-		if(key[KEY_M]) type_perso = MARCHEUR;
+		rest(50);
+		if(key[MY_KEY_M]) type_perso = MARCHEUR; // fix du bug qwerty/azerty
 		if(key[KEY_N]) type_perso = NAGEUR;
 		if(key[KEY_G]) type_perso = GRIMPEUR;
 		if(key[KEY_E]) type_perso = ECLAIREUR;

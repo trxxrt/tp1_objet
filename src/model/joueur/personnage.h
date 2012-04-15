@@ -12,6 +12,11 @@
 #define ECLAIREUR 3
 #define GRIMPEUR 4
 
+#define BAS 0
+#define GAUCHE 1
+#define DROITE 2
+#define HAUT 3
+
 class Personnage
 {
 	protected:
@@ -25,6 +30,8 @@ class Personnage
 		int gourde;
 		int sac;
 		int type;
+		int clk;
+		int direction;
 
 	public:
 		/// constructor & destructor
@@ -40,6 +47,8 @@ class Personnage
 		int Getsac() { return sac; }
 		int Gettype() { return type; }
 		int Getportee() { return portee; }
+		int Getclk() { return clk; }
+		int Getdirection() { return direction; }
 		BITMAP* Gettile() { return tile; }
 		bool isAlive();
 
@@ -51,6 +60,7 @@ class Personnage
 		void Sethydratation(int val);
 		void Setgourde(int val);
 		void Setsac(int val);
+		void Setclk(int val);
 
 		/// methodes
 		void updateCases();

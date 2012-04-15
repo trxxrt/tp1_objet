@@ -104,7 +104,8 @@ void Vue::afficherPersonnage()
 	if(p->Gety()*Case::taille_pix-bufferTerrain->h/2 >= bmpTerrain->h-bufferTerrain->h) y_pos = SCREEN_H - (t->Gety() - p->Gety())*Case::taille_pix;
 
 	// affichage du joueur
-	draw_sprite(bufferJeu, p->Gettile(), x_pos, y_pos);
+	//draw_sprite(bufferJeu, p->Gettile(), x_pos, y_pos);
+	masked_blit(p->Gettile(), bufferJeu, p->Getclk()*Case::taille_pix, p->Getdirection()*Case::taille_pix, x_pos, y_pos, Case::taille_pix, Case::taille_pix);
 }
 
 void Vue::afficherGui()
