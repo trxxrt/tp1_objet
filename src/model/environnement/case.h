@@ -50,6 +50,7 @@ class Case
 		void Settype(int val) { type = val; }
 		void Setdecouverte(int val) { decouverte = (bool)val; }
 		void Settile(int val);
+		static void Inittiles();
 
 };
 

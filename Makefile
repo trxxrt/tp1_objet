@@ -21,7 +21,7 @@ OBJ=$(SRC:.cpp=.o)
 
 all: $(EXE) clean_obj
 
-Debug: $(EXE) clean_obj
+Debug: $(EXE)
 	mkdir bin || true
 	mkdir bin/Debug || true
 	cp $(EXE) bin/Debug
