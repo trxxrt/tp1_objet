@@ -2,3 +2,4 @@ bin/*
 obj/*
 perlinGeneration.depend
 perlinGeneration.layout
+*kde*

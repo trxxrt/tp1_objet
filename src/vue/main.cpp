@@ -15,6 +15,10 @@ void Vue::initAllegro(){
         ERREUR(allegro_error);
     }
     show_mouse(screen);
+
+	const char *override_data = "[system]\n"
+	"keyboard=FR";
+	override_config_data(override_data, ustrsize(override_data));
 }
 
 Vue::Vue(Terrain *t, Personnage* p)
